@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Cadastro de Cliente</title>
+  <link rel="stylesheet" href="cadastro.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+  <a href="site.html" class="logo">
+    <span class="logo-icon">⚡</span>
+    <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
+  </a>
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+    <button onclick="window.location.href='loja.html'">Buscar</button>
+  </div>
+  <nav>
+    <a href="site.html">Início</a>
+    <a href="loja.html">Produtos</a>
+    <a href="entrar.html">Login</a>
+    <a href="carrinho.html" class="nav-cart">🛒 Carrinho</a>
+  </nav>
+</header>
+
+  <div class="form-container">
+    <h1>Cadastrar Cliente</h1>
+
+    <label>Nome:</label>
+    <input type="text" id="nome">
+
+    <label>Email:</label>
+    <input type="email" id="email">
+
+    <label>CPF:</label>
+    <input type="text" id="cpf">
+
+    <label>Data de Nascimento:</label>
+    <input type="date" id="data_nascimento">
+
+    <label>Senha:</label>
+    <input type="password" id="senha">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <p style="text-align:center;margin-top:12px;font-size:0.82rem">
+      Já tem conta? <a href="entrar.html" style="color:#e50914;text-decoration:none">Fazer login</a>
+      &nbsp;·&nbsp;
+      <a href="#" onclick="event.preventDefault(); document.getElementById('modal-recuperar-cad').style.display='flex'" style="color:#888;text-decoration:none">Esqueci minha senha</a>
+    </p>
+    <p id="msg"></p>
+  </div>
+
+<!-- Modal recuperar senha -->
+<div id="modal-recuperar-cad" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(3px)" onclick="fecharRecuperarCad()"></div>
+  <div class="modal-box" style="position:relative;max-width:420px;width:90%">
+    <h3 style="color:#fff;margin-bottom:8px;font-family:'Poppins',sans-serif">Recuperar Senha</h3>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:20px;font-family:'Poppins',sans-serif">
+      Informe seu email e CPF cadastrados para redefinir sua senha.
+    </p>
+
+    <div style="margin-bottom:12px">
+      <label style="display:block;font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;font-family:'Poppins',sans-serif">Email</label>
+      <input type="email" id="cad-rec-email" placeholder="seu@email.com"
+        style="width:100%;background:#111;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 12px;font-size:0.9rem;font-family:'Poppins',sans-serif;outline:none;box-sizing:border-box"
+        onkeydown="if(event.key==='Enter') cadVerificarIdentidade()">
+    </div>
+    <div style="margin-bottom:12px">
+      <label style="display:block;font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;font-family:'Poppins',sans-serif">CPF</label>
+      <input type="text" id="cad-rec-cpf" placeholder="00000000000" maxlength="11"
+        style="width:100%;background:#111;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 12px;font-size:0.9rem;font-family:'Poppins',sans-serif;outline:none;box-sizing:border-box"
+        onkeydown="if(event.key==='Enter') cadVerificarIdentidade()">
+    </div>
+
+    <div id="cad-rec-nova-area" style="display:none">
+      <div style="margin-bottom:12px">
+        <label style="display:block;font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;font-family:'Poppins',sans-serif">Nova Senha</label>
+        <input type="password" id="cad-rec-nova" placeholder="Mínimo 6 caracteres"
+          style="width:100%;background:#111;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 12px;font-size:0.9rem;font-family:'Poppins',sans-serif;outline:none;box-sizing:border-box">
+      </div>
+      <div style="margin-bottom:12px">
+        <label style="display:block;font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;font-family:'Poppins',sans-serif">Confirmar Nova Senha</label>
+        <input type="password" id="cad-rec-confirmar" placeholder="Repita a nova senha"
+          style="width:100%;background:#111;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 12px;font-size:0.9rem;font-family:'Poppins',sans-serif;outline:none;box-sizing:border-box"
+          onkeydown="if(event.key==='Enter') cadSalvarNovaSenha()">
+      </div>
+    </div>
+
+    <p id="cad-rec-msg" style="font-size:0.82rem;min-height:18px;font-family:'Poppins',sans-serif;margin-bottom:14px;color:#e50914"></p>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button onclick="fecharRecuperarCad()"
+        style="padding:10px 18px;border-radius:8px;background:transparent;border:1px solid #444;color:#aaa;font-family:'Poppins',sans-serif;font-size:0.85rem;cursor:pointer">
+        Cancelar
+      </button>
+      <button id="cad-btn-rec" onclick="cadVerificarIdentidade()"
+        style="padding:10px 18px;border-radius:8px;background:#e50914;border:none;color:#fff;font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer">
+        Verificar
+      </button>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+  <script>
+    // Se já está logado, vai direto para a loja
+    if (localStorage.getItem("usuario_logado")) {
+      window.location.href = "loja.html";
+    }
+  </script>
+  <script>
+    function cadastrar() {
+      const nome           = document.getElementById("nome").value.trim();
+      const email          = document.getElementById("email").value.trim();
+      const cpf            = document.getElementById("cpf").value.trim();
+      const data_nascimento = document.getElementById("data_nascimento").value;
+      const senha          = document.getElementById("senha").value;
+      const msg            = document.getElementById("msg");
+
+      // Validações
+      if (!nome || !email || !cpf || !data_nascimento || !senha) {
+        msg.style.color = "#e50914";
+        msg.innerText = "Por favor, preencha todos os campos.";
+        return;
+      }
+      if (cpf.length !== 11 || isNaN(cpf)) {
+        msg.style.color = "#e50914";
+        msg.innerText = "CPF deve conter 11 dígitos numéricos.";
+        return;
+      }
+      if (!email.includes("@")) {
+        msg.style.color = "#e50914";
+        msg.innerText = "Email inválido.";
+        return;
+      }
+      if (senha.length < 6) {
+        msg.style.color = "#e50914";
+        msg.innerText = "Senha deve ter no mínimo 6 caracteres.";
+        return;
+      }
+
+      fetch("http://127.0.0.1:5000/criar/clientes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, cpf, senha, data_nascimento })
+      })
+      .then(r => r.json())
+      .then(res => {
+        if (res.error) {
+          msg.style.color = "#e50914";
+          msg.innerText = res.error;
+          return;
+        }
+        msg.style.color = "#00c864";
+        msg.innerText = "Cadastro realizado com sucesso! Redirecionando...";
+        setTimeout(() => { window.location.href = "entrar.html"; }, 1500);
+      })
+      .catch(() => {
+        msg.style.color = "#e50914";
+        msg.innerText = "Erro ao conectar com o servidor. Tente novamente.";
+      });
+    }
+  </script>
+
+  <script>
+    let _cadRecEmail = '', _cadRecCpf = '';
+
+    function fecharRecuperarCad() {
+      document.getElementById('modal-recuperar-cad').style.display = 'none';
+      document.getElementById('cad-rec-msg').textContent = '';
+      document.getElementById('cad-rec-nova-area').style.display = 'none';
+      document.getElementById('cad-btn-rec').textContent = 'Verificar';
+      document.getElementById('cad-btn-rec').onclick = cadVerificarIdentidade;
+      document.getElementById('cad-rec-email').value = '';
+      document.getElementById('cad-rec-cpf').value = '';
+    }
+
+    function cadVerificarIdentidade() {
+      const email = document.getElementById('cad-rec-email').value.trim();
+      const cpf   = document.getElementById('cad-rec-cpf').value.replace(/\D/g,'');
+      const msg   = document.getElementById('cad-rec-msg');
+
+      if (!email || cpf.length !== 11) {
+        msg.style.color = '#e50914';
+        msg.textContent = 'Informe email e CPF válidos (11 dígitos).';
+        return;
+      }
+
+      fetch("http://127.0.0.1:5000/verificar/identidade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, cpf })
+      })
+      .then(r => r.json())
+      .then(res => {
+        if (res.error) { msg.style.color = '#e50914'; msg.textContent = res.error; return; }
+        _cadRecEmail = email;
+        _cadRecCpf   = cpf;
+        msg.style.color = '#00c864';
+        msg.textContent = '✓ Identidade confirmada! Defina sua nova senha.';
+        document.getElementById('cad-rec-nova-area').style.display = 'block';
+        document.getElementById('cad-btn-rec').textContent = 'Salvar Nova Senha';
+        document.getElementById('cad-btn-rec').onclick = cadSalvarNovaSenha;
+        document.getElementById('cad-rec-nova').focus();
+      })
+      .catch(() => { msg.style.color = '#e50914'; msg.textContent = 'Erro ao conectar com o servidor.'; });
+    }
+
+    function cadSalvarNovaSenha() {
+      const nova      = document.getElementById('cad-rec-nova').value;
+      const confirmar = document.getElementById('cad-rec-confirmar').value;
+      const msg       = document.getElementById('cad-rec-msg');
+
+      if (nova.length < 6) { msg.style.color = '#e50914'; msg.textContent = 'Senha deve ter no mínimo 6 caracteres.'; return; }
+      if (nova !== confirmar) { msg.style.color = '#e50914'; msg.textContent = 'As senhas não coincidem.'; return; }
+
+      fetch("http://127.0.0.1:5000/recuperar/senha", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: _cadRecEmail, cpf: _cadRecCpf, senha_nova: nova })
+      })
+      .then(r => r.json())
+      .then(res => {
+        if (res.error) { msg.style.color = '#e50914'; msg.textContent = res.error; return; }
+        msg.style.color = '#00c864';
+        msg.textContent = '✓ Senha redefinida com sucesso! Você já pode fazer login.';
+        document.getElementById('cad-btn-rec').style.display = 'none';
+        setTimeout(fecharRecuperarCad, 2500);
+      })
+      .catch(() => { msg.style.color = '#e50914'; msg.textContent = 'Erro ao conectar com o servidor.'; });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<title>Loja - LifeUp Suplementos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="loja.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="site.html" class="logo">
+    <span class="logo-icon">⚡</span>
+    <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
+  </a>
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Pesquisar produtos..." oninput="filtrarPorBusca()">
+    <button onclick="filtrarPorBusca()">Buscar</button>
+  </div>
+  <nav>
+    <a href="site.html">Início</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="entrar.html">Login</a>
+    <a href="carrinho.html" class="nav-cart">🛒 Carrinho</a>
+  </nav>
+</header>
+
+<main>
+  <section id="LOJA">
+    <h2>Nossos Produtos</h2>
+
+<div id="filtros">
+      <div class="filtros">
+        <button class="filtro ativo" onclick="filtrar('todos', this)">Todos</button>
+        <button class="filtro" onclick="filtrar('suplemento', this)">Suplementos</button>
+        <button class="filtro" onclick="filtrar('roupa', this)">Roupas</button>
+        <button class="filtro" onclick="filtrar('whey', this)">Whey</button>
+        <button class="filtro" onclick="filtrar('creatina', this)">Creatina</button>
+        <button class="filtro" onclick="filtrar('pre-treino', this)">Pré-Treino</button>
+        <button class="filtro" onclick="filtrar('vitamina', this)">Vitaminas</button>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span id="contador"></span>
+      <p class="sem-resultados" id="semResultados">Nenhum produto encontrado.</p>
+    </div>
+
+<section id="produtos">
+  <!-- Produtos serão carregados dinamicamente -->
+</section>
+
+  </section>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-icon">⚡</span>
+      <span class="footer-logo">LifeUp</span>
+      <p>Suplementos de alta qualidade para quem leva o treino a sério.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="site.html">Início</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="entrar.html">Login</a></li>
+        <li><a href="carrinho.html">Carrinho</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Categorias</h4>
+      <ul>
+        <li><a href="#" onclick="filtrar('whey')">Whey Protein</a></li>
+        <li><a href="#" onclick="filtrar('creatina')">Creatina</a></li>
+        <li><a href="#" onclick="filtrar('pre-treino')">Pré-Treino</a></li>
+        <li><a href="#" onclick="filtrar('roupa')">Roupas</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contato</h4>
+      <p>📧 support@lifeup.com</p>
+      <p>📱 (11) 99999-9999</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 LifeUp Suplementos. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+function filtrar(categoria, btn) {
+  // Atualiza botão ativo
+  if (btn) {
+    document.querySelectorAll('.filtro').forEach(b => b.classList.remove('ativo'));
+    btn.classList.add('ativo');
+  }
+
+  const produtos = document.querySelectorAll('.product');
+  let visiveis = 0;
+
+  produtos.forEach(p => {
+    const cats = p.dataset.categoria || '';
+    const mostrar = categoria === 'todos' || cats.includes(categoria);
+    p.style.display = mostrar ? 'flex' : 'none';
+    if (mostrar) visiveis++;
+  });
+
+  document.getElementById('contador').textContent = `${visiveis} produto(s) encontrado(s)`;
+  document.getElementById('semResultados').style.display = visiveis === 0 ? 'block' : 'none';
+}
+
+function filtrarPorBusca() {
+  const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+  const produtos = document.querySelectorAll('.product');
+  let visiveis = 0;
+
+  // Reseta filtros de categoria
+  document.querySelectorAll('.filtro').forEach(b => b.classList.remove('ativo'));
+  document.querySelector('.filtro').classList.add('ativo');
+
+  produtos.forEach(p => {
+    const nome = p.querySelector('h3')?.textContent.toLowerCase() || '';
+    const desc = p.querySelector('p')?.textContent.toLowerCase() || '';
+    const mostrar = termo === '' || nome.includes(termo) || desc.includes(termo);
+    p.style.display = mostrar ? 'flex' : 'none';
+    if (mostrar) visiveis++;
+  });
+
+  document.getElementById('contador').textContent = `${visiveis} produto(s) encontrado(s)`;
+  document.getElementById('semResultados').style.display = visiveis === 0 ? 'block' : 'none';
+}
+
+// Inicializa contador
+filtrar('todos', document.querySelector('.filtro.ativo'));
+</script>
+<script src="script.js"></script>
+<script>
+  window.onload = function() {
+    carregarHome();
+  };
+</script>
+</body>
+</html>

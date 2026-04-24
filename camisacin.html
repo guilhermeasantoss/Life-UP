@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <title>Camisa oversize LifeUp</title>
+  <link rel="stylesheet" href="whey.css" />
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+<header>
+  <a href="site.html" class="logo">
+    <span class="logo-icon">?</span>
+    <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
+  </a>
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+    <button onclick="pesquisar()">Buscar</button>
+  </div>
+  <nav>
+    <a href="site.html">Início</a>
+    <a href="loja.html">Produtos</a>
+    <a href="entrar.html">Login</a>
+    <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
+  </nav>
+</header>
+
+<div class="container">
+    <img src="img/camisetacinza.png" alt="Camisa colorida"/>
+    <h3>Camisa de treino- LifeUp Suplementos</h3>
+
+    <p>A camisa de treino da LifeUp é uma peça criada para oferecer conforto, performance e estilo durante seus treinos. Confeccionada em tecido tecnológico com boa respirabilidade e leveza, ela ajuda a manter a pele seca e a temperatura regulada mesmo em exercícios intensos. Seu caimento ergonômico e design esportivo garantem movimento livre e conforto prolongado, ideal para academia, corrida ou atividades funcionais <br>com um visual moderno que combina com diferentes looks fitness.</p>
+
+    <h3>Descrição</h3>
+    <ul>
+    <li>Tecido técnico multifibra: camisas Dri-Fit, incluindo modelos LifeUp, são geralmente feitas com fibra sintética leve como o poliéster, às vezes com pequenas misturas de elastano para dar mais elasticidade e conforto ao vestir</li>
+    <br>
+    <li>Tecnologia Dri-Fit: essa tecnologia tem a função de afastar o suor da pele para a superfície do tecido, onde ele evapora mais rápido — isso ajuda a manter o corpo mais seco e confortável durante atividades físicas.</li>
+    <br>
+    <li>Respirabilidade e secagem rápida: o tecido é construído para permitir circulação de ar e rápida evaporação da umidade, o que melhora a ventilação e reduz a sensação de calor/umidade.</li>
+    <br>
+    <li>Estrutura da malha: muitas camisas Dri-Fit têm malha mais aberta ou microfibros finos, o que aumenta a ventilação sem perder resistência.</li>
+    <br>
+    <li>Acabamentos e conforto: costuras e golas são projetadas para minimizar atrito, aumentar liberdade de movimento e garantir um caimento confortável, mesmo durante treinos.</li>
+  </ul>
+    <label><h3>Selecione o tamanho:</h3>
+        <input type="radio" name="dose" value="100" data-preco="79.90">P<br>
+        <input type="radio" name="dose" value="250" data-preco="79.90" checked>M<br>
+        <input type="radio" name="dose" value="500" data-preco="79.90">G<br>
+        <input type="radio" name="dose" value="500" data-preco="79.90">GG<br>
+    </label>
+    <label>Quantidade:
+      <select id="quantidade">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </label>
+
+    <p class="price">R$ <span id="preco">0,00</span></p>
+    <p class="desconto" id="mensagem-desconto"></p>
+
+    <a href="carrinho.html" class="btn">Comprar</a>
+  </div>
+
+<script>
+    const radios = document.querySelectorAll('input[name="dose"]');
+    const selectQtd = document.getElementById('quantidade');
+    const precoElemento = document.getElementById('preco');
+    const msgDesconto = document.getElementById('mensagem-desconto');
+
+    let precoBase = 0;
+
+    function atualizarPreco() {
+      const quantidade = parseInt(selectQtd.value);
+      let total = precoBase * quantidade;
+      let desconto = 0;
+
+      if (quantidade >= 3) {
+        desconto = total * 0.10;
+        total -= desconto;
+        msgDesconto.textContent = `Desconto aplicado: 10% (-R$ ${desconto.toFixed(2).replace('.', ',')})`;
+      } else {
+        msgDesconto.textContent = '';
+      }
+
+      precoElemento.textContent = total.toFixed(2).replace('.', ',');
+    }
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        precoBase = parseFloat(radio.getAttribute('data-preco'));
+        atualizarPreco();
+      });
+    });
+
+    selectQtd.addEventListener('change', atualizarPreco);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const selecionado = document.querySelector('input[name="dose"]:checked');
+      precoBase = parseFloat(selecionado.getAttribute('data-preco'));
+      atualizarPreco();
+    });
+
+    // ===== Função para esconder o loader =====
+    window.addEventListener('load', function () {
+      const loader = document.getElementById('loader-wrapper');
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(() => loader.style.display = 'none', 500);
+    });
+
+    // Função para redirecionar ao carrinho com dados
+function irParaCarrinho() {
+    const dose = document.querySelector('input[name="dose"]:checked').value;
+    const quantidade = selectQtd.value;
+    const preco = precoElemento.textContent;
+
+    const url = `carrinho.html?dose=${dose}&quantidade=${quantidade}&preco=${preco}`;
+    window.location.href = url;
+}
+  </script>
+
+<script>
+function pesquisar() {
+  const termo = document.getElementById('searchInput').value;
+  if (termo.trim()) { window.location.href = 'loja.html'; }
+}
+</script>
+</body>
+</html>

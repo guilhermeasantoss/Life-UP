@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>Calça de treino LifeUp</title>
+  <link rel="stylesheet" href="whey.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+<header>
+  <a href="site.html" class="logo">
+    <span class="logo-icon">?</span>
+    <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
+  </a>
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+    <button onclick="pesquisar()">Buscar</button>
+  </div>
+  <nav>
+    <a href="site.html">Início</a>
+    <a href="loja.html">Produtos</a>
+    <a href="entrar.html">Login</a>
+    <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
+  </nav>
+</header>
+
+<div class="container">
+    <img src="img/calca1.png" alt="Camisa colorida"/>
+    <h3>Calça de treino- LifeUp Suplementos</h3>
+    <h2>Descrição:</h2>
+
+    <p>A calça de treino LifeUp foi desenvolvida pensando em conforto, liberdade de movimento e estilo para todas as suas atividades físicas. Confeccionada com tecido tecnológico que oferece boa elasticidade, respirabilidade e ajuste anatômico ao corpo, ela proporciona conforto durante treinos na academia, corrida ou exercícios funcionais. Seu design moderno e versátil garante um visual esportivo atual, sendo uma peça perfeita tanto para performance quanto para o dia a dia.</p>
+    h3>Descrição</h3>
+    <ul>
+    <li>Tecido técnico sintético – como em outras peças Dri-Fit, a calça é geralmente feita com poliéster e/ou poliamida, fibras sintéticas que são leves, resistentes e facilitam o afastamento do suor da pele para a superfície do tecido, onde ele evapora mais rápido, mantendo a pele seca durante exercícios ou atividades físicas.</li>
+    <br>
+    <li>Tecnologia Dri-Fit esse tipo de malha é projetado para absorver e distribuir a umidade rapidamente, ajudando a reduzir a sensação de suor e melhorar o conforto durante treinos ou movimentos intensos.</li>
+    <br>
+    <li>Elasticidade e mobilidade – a composição costuma incluir elastano ou similar para dar flexibilidade ao tecido, permitindo maior liberdade de movimento ao caminhar, correr ou realizar exercícios.</li>
+    <br>
+    <li>Cós com ajuste confortável – muitas calças Dri-Fit possuem cintura elástica ou cordão interno, que ajudam a manter a peça no lugar e ajustam o caimento ao corpo.</li>
+    <br>
+    <li>Acabamento funcional – costuras e recortes são feitos para minimizar o atrito e aumentar a durabilidade, além de proporcionar um caimento adequado para atividades esportivas.</li>
+
+    </ul>
+
+    <label>Selecione o tamanho:<br>
+        <input type="radio" name="dose" value="100" data-preco="230.90">P<br>
+        <input type="radio" name="dose" value="250" data-preco="230.90" checked>M<br>
+        <input type="radio" name="dose" value="500" data-preco="230.90">G<br>
+        <input type="radio" name="dose" value="500" data-preco="230.90">GG<br>
+    </label>
+    <label>Quantidade:
+      <select id="quantidade">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </label>
+
+    <p class="price">R$ <span id="preco">0,00</span></p>
+    <p class="desconto" id="mensagem-desconto"></p>
+
+    <a href="carrinho.html" class="btn">Comprar</a>
+  </div>
+
+<script>
+    const radios = document.querySelectorAll('input[name="dose"]');
+    const selectQtd = document.getElementById('quantidade');
+    const precoElemento = document.getElementById('preco');
+    const msgDesconto = document.getElementById('mensagem-desconto');
+
+    let precoBase = 0;
+
+    function atualizarPreco() {
+      const quantidade = parseInt(selectQtd.value);
+      let total = precoBase * quantidade;
+      let desconto = 0;
+
+      if (quantidade >= 3) {
+        desconto = total * 0.10;
+        total -= desconto;
+        msgDesconto.textContent = `Desconto aplicado: 10% (-R$ ${desconto.toFixed(2).replace('.', ',')})`;
+      } else {
+        msgDesconto.textContent = '';
+      }
+
+      precoElemento.textContent = total.toFixed(2).replace('.', ',');
+    }
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        precoBase = parseFloat(radio.getAttribute('data-preco'));
+        atualizarPreco();
+      });
+    });
+
+    selectQtd.addEventListener('change', atualizarPreco);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const selecionado = document.querySelector('input[name="dose"]:checked');
+      precoBase = parseFloat(selecionado.getAttribute('data-preco'));
+      atualizarPreco();
+    });
+
+    // ===== Função para esconder o loader =====
+    window.addEventListener('load', function () {
+      const loader = document.getElementById('loader-wrapper');
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(() => loader.style.display = 'none', 500);
+    });
+
+    // Função para redirecionar ao carrinho com dados
+function irParaCarrinho() {
+    const dose = document.querySelector('input[name="dose"]:checked').value;
+    const quantidade = selectQtd.value;
+    const preco = precoElemento.textContent;
+
+    const url = `carrinho.html?dose=${dose}&quantidade=${quantidade}&preco=${preco}`;
+    window.location.href = url;
+}
+  </script>
+
+<script>
+function pesquisar() {
+  const termo = document.getElementById('searchInput').value;
+  if (termo.trim()) { window.location.href = 'loja.html'; }
+}
+</script>
+</body>
+</html>

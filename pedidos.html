@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<title>Minhas Compras - LifeUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  main {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 24px;
+  }
+
+  .pedidos-titulo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #e50914;
+    padding-bottom: 12px;
+  }
+
+  .pedido-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .pedido-card:hover {
+    border-color: #e50914;
+  }
+
+  .pedido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #111;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pedido-id {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .pedido-data {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .pedido-total {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #e50914;
+  }
+
+  .pedido-itens {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pedido-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+    color: #ccc;
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .pedido-item:last-child {
+    border-bottom: none;
+  }
+
+  .pedido-item-nome {
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .pedido-item-qty {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  .pedido-item-preco {
+    color: #e50914;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pedidos-vazio {
+    text-align: center;
+    padding: 60px 20px;
+    color: #555;
+  }
+
+  .pedidos-vazio p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .btn-comprar {
+    display: inline-block;
+    background: #e50914;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+
+  .btn-comprar:hover { background: #ff0a16; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="site.html" class="logo">
+    <span class="logo-icon">⚡</span>
+    <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
+  </a>
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+    </svg>
+    <input type="text" placeholder="Pesquisar produtos...">
+    <button onclick="window.location.href='loja.html'">Buscar</button>
+  </div>
+  <nav>
+    <a href="loja.html">Produtos</a>
+    <a href="entrar.html">Login</a>
+    <a href="carrinho.html" class="nav-cart">🛒 Carrinho</a>
+  </nav>
+</header>
+
+<main>
+  <h2 class="pedidos-titulo">📦 Minhas Compras</h2>
+  <div id="lista-pedidos">
+    <p style="color:#666; text-align:center; padding: 40px 0;">Carregando pedidos...</p>
+  </div>
+  <div style="margin-top:24px">
+    <a href="loja.html" style="display:inline-flex;align-items:center;gap:8px;color:#888;text-decoration:none;font-size:0.85rem;font-family:'Poppins',sans-serif;transition:color 0.2s"
+      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#888'">
+      ← Continuar Comprando
+    </a>
+  </div>
+</main>
+
+<footer>
+  <div style="text-align:center; padding: 20px; border-top: 1px solid #e50914;">
+    <p style="color:#444; font-size:0.82rem;">© 2025 LifeUp Suplementos. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const usuario = JSON.parse(localStorage.getItem("usuario_logado"));
+    if (!usuario) { window.location.href = "entrar.html"; return; }
+
+    const container = document.getElementById("lista-pedidos");
+
+    if (!usuario.id) {
+      container.innerHTML = `
+        <div class="pedidos-vazio">
+          <p>Faca login com sua conta para ver seus pedidos.</p>
+          <a href="entrar.html" class="btn-comprar">Fazer Login</a>
+        </div>`;
+      return;
+    }
+
+    fetch(`http://127.0.0.1:5000/listar/pedidos/cliente/${usuario.id}`)
+      .then(r => r.json())
+      .then(dados => {
+        if (!dados || dados.length === 0) {
+          container.innerHTML = `
+            <div class="pedidos-vazio">
+              <div style="font-size:3rem;margin-bottom:16px">🛍️</div>
+              <p style="font-size:1rem;color:#fff;font-weight:600;margin-bottom:8px">Nenhuma compra por aqui ainda!</p>
+              <p style="font-size:0.85rem;color:#666;margin-bottom:24px">Que tal explorar nossos produtos e fazer seu primeiro pedido?</p>
+              <a href="loja.html" class="btn-comprar">Ver Produtos</a>
+            </div>`;
+          return;
+        }
+
+        // Agrupa itens por pedido
+        const pedidosMap = {};
+        dados.forEach(row => {
+          if (!pedidosMap[row.id_pedidos]) {
+            pedidosMap[row.id_pedidos] = {
+              id: row.id_pedidos,
+              data: row.data_pedido,
+              total: row.valor_total,
+              itens: []
+            };
+          }
+          if (row.id_produtos) {
+            pedidosMap[row.id_pedidos].itens.push({
+              nome: row.nome_produto,
+              quantidade: row.quantidade,
+              preco: row.preco_unitario
+            });
+          }
+        });
+
+        const pedidos = Object.values(pedidosMap).reverse();
+        container.innerHTML = "";
+
+        pedidos.forEach(p => {
+          const data = p.data
+            ? new Date(p.data).toLocaleDateString("pt-BR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" })
+            : "—";
+
+          const itensHTML = p.itens.map(i => `
+            <div class="pedido-item">
+              <div>
+                <p class="pedido-item-nome">${i.nome || "Produto"}</p>
+                <p class="pedido-item-qty">Qtd: ${i.quantidade}</p>
+              </div>
+              <span class="pedido-item-preco">R$ ${(i.preco * i.quantidade).toFixed(2).replace(".", ",")}</span>
+            </div>`).join("");
+
+          const card = document.createElement("div");
+          card.className = "pedido-card";
+          card.innerHTML = `
+            <div class="pedido-header">
+              <span class="pedido-id">Pedido #${p.id}</span>
+              <span class="pedido-data">${data}</span>
+              <span class="pedido-total">R$ ${parseFloat(p.total).toFixed(2).replace(".", ",")}</span>
+            </div>
+            <div class="pedido-itens">${itensHTML || '<p style="color:#555;font-size:0.85rem;">Detalhes nao disponiveis</p>'}</div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(() => {
+        container.innerHTML = `<p style="color:#e50914; text-align:center; padding:40px 0;">Erro ao carregar pedidos. Tente novamente.</p>`;
+      });
+  });
+</script>
+</body>
+</html>
