@@ -12,7 +12,7 @@
 <body>
 
 <header>
-  <a href="site.html" class="logo">
+  <a href="index.html" class="logo">
     <span class="logo-icon">?</span>
     <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
   </a>
@@ -23,12 +23,12 @@
     <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
     <button onclick="pesquisar()">Buscar</button>
   </div>
-  <nav>
-    <a href="site.html">Início</a>
-    <a href="loja.html">Produtos</a>
-    <a href="entrar.html">Login</a>
-    <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
-  </nav>
+   <nav>
+      <a href="index.html">Inï¿½cio</a>
+      <a href="loja.html">Produtos</a>
+      <a href="entrar.html">Login</a>
+      <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
+    </nav>
 </header>
 
 <img src="img/bcaa.png" alt="Dumbbells">
@@ -37,9 +37,9 @@
 </h3>
 <BR>
 
-<P>Aminoácidos de cadeia ramificada para recuperação do desgaste físico e construção muscular.
+<P>Aminoï¿½cidos de cadeia ramificada para recuperaï¿½ï¿½o do desgaste fï¿½sico e construï¿½ï¿½o muscular.
 
-Indispensável para a manutenção e o crescimento dos músculos o BCAA Lifeup promove uma maior recuperação muscular e aumento da resistência no pré e pós-treino, fornecendo um maior efeito anti-catabólico sendo um importante suplemento alimentar para ganhos de massa e recuperação muscular.
+Indispensï¿½vel para a manutenï¿½ï¿½o e o crescimento dos mï¿½sculos o BCAA Lifeup promove uma maior recuperaï¿½ï¿½o muscular e aumento da resistï¿½ncia no prï¿½ e pï¿½s-treino, fornecendo um maior efeito anti-catabï¿½lico sendo um importante suplemento alimentar para ganhos de massa e recuperaï¿½ï¿½o muscular.
 </P>
 
 <label>Selecione a dosagem:<br>
@@ -75,7 +75,7 @@ const msgDesconto = document.getElementById('mensagem-desconto');
 
 let precoBase = 0;
 
-// Atualiza o preço total
+// Atualiza o preï¿½o total
 function atualizarPreco() {
     const quantidade = parseInt(selectQtd.value);
     let total = precoBase * quantidade;
@@ -104,13 +104,13 @@ radios.forEach(radio => {
 // Quando mudar a quantidade
 selectQtd.addEventListener('change', atualizarPreco);
 
-// Inicializa com valor padrão (250g e quantidade 1)
+// Inicializa com valor padrï¿½o (250g e quantidade 1)
 window.addEventListener('DOMContentLoaded', () => {
     const selecionado = document.querySelector('input[name="dose"]:checked');
     precoBase = parseFloat(selecionado.getAttribute('data-preco'));
     atualizarPreco();
 });
-// Função para redirecionar ao carrinho com dados
+// Funï¿½ï¿½o para redirecionar ao carrinho com dados
 function irParaCarrinho() {
     const dose = document.querySelector('input[name="dose"]:checked').value;
     const quantidade = selectQtd.value;
