@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<title>Detalhes do Produto - LifeUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-icon">⚡</span>
+    <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
+  </a>
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#888" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+    <button onclick="pesquisar()">Buscar</button>
+  </div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="loja.html">Produtos</a>
+    <a href="entrar.html">Login</a>
+    <a href="carrinho.html" class="nav-cart">🛒 Carrinho</a>
+  </nav>
+</header>
+
+<main>
+  <div id="detalhesproduto">
+    <!-- Conteúdo será carregado dinamicamente -->
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 LifeUp Suplementos. Todos os direitos reservados.</p>
+    <p>Email: support@lifeup.com</p>
+    <p>Instagram: <strong>@LifeUp</strong></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  window.onload = function() {
+    carregarDetalhes();
+  };
+</script>
+
+<!-- Modal pós-adição ao carrinho -->
+<div id="modal-carrinho" style="display:none">
+  <div class="modal-overlay" onclick="fecharModal()"></div>
+  <div class="modal-box">
+    <div class="modal-icon">✓</div>
+    <h3>Adicionado ao carrinho!</h3>
+    <p><strong id="modal-nome-produto"></strong> — <span id="modal-qty"></span> unidade(s)</p>
+    <div class="modal-btns">
+      <a href="loja.html" class="modal-btn modal-btn-outline">← Continuar Comprando</a>
+      <a href="carrinho.html" class="modal-btn modal-btn-primary">🛒 Ir para o Carrinho</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,497 @@
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== CORPO ===== */
+body {
+    background-color: #141414;
+    color: #ffffff;
+    line-height: 1.6;
+    padding: 0;
+}
+
+
+body.loaded {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.fade-out {
+    opacity: 0;
+    filter: blur(10px);
+}
+
+/* ===== CABEÇALHO ===== */
+header {
+    background-color: #000;
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 2px solid #e50914;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 20px rgba(229,9,20,0.15);
+}
+
+header h1 {
+    color: #e50914;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+/* ===== BARRA DE PESQUISA ===== */
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 30px;
+  padding: 6px 12px;
+  border: 1px solid #2a2a2a;
+  transition: border-color 0.2s;
+  gap: 6px;
+}
+
+.search-box:focus-within {
+  border-color: #e50914;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  padding: 6px 4px;
+  width: 200px;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-box button {
+  background-color: #e50914;
+  border: none;
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.search-box button:hover {
+  background-color: #b20710;
+}
+
+/* ===== NAVEGAÇÃO ===== */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 0;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    margin: 0;
+}
+
+nav a:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.07);
+}
+
+.nav-cart {
+    background-color: #e50914;
+    color: #fff !important;
+    border-radius: 20px !important;
+    padding: 6px 16px !important;
+    font-weight: 600 !important;
+    transition: background 0.3s, transform 0.2s !important;
+}
+
+.nav-cart:hover {
+    background-color: #b20710 !important;
+    transform: translateY(-1px);
+}
+
+/* ===== FILTROS ===== */
+#filtros {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filtro {
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all .2s ease;
+}
+
+.filtro:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    border-color: #555;
+}
+
+.filtro.ativo {
+    background: #e50914;
+    border-color: #e50914;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+/* ===== SEÇÃO LOJA ===== */
+#LOJA {
+    max-width: 1200px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+#LOJA h2 {
+    font-size: 28px;
+    color: #e50914;
+    margin-bottom: 20px;
+}
+
+/* ===== STATUS ===== */
+.status-bar {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.sem-resultados {
+    display: none;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+/* ===== GRID DE PRODUTOS ===== */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 22px;
+    justify-content: center;
+}
+
+/* ===== CARD PRODUTO ===== */
+.product {
+    background: #222;
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform .3s ease, box-shadow .3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 380px;
+}
+
+.product img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.product h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.product p {
+    font-size: 14px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    flex-grow: 1;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* ===== HOVER CARD ===== */
+.product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+}
+
+/* ===== BOTÃO COMPRAR ===== */
+.btn {
+    background: #e50914;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background .3s;
+}
+
+.btn:hover {
+    background: #f40612;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Desktop largo (min 1200px) */
+@media (min-width: 1200px) {
+  header {
+    padding: 14px 48px;
+  }
+
+  .search-box input {
+    width: 260px;
+  }
+
+  #LOJA {
+    max-width: 1400px;
+  }
+}
+
+/* Tablets (max 1024px) */
+@media (max-width: 1024px) {
+  header {
+    padding: 12px 24px;
+  }
+
+  .search-box input {
+    width: 180px;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  #LOJA {
+    margin: 20px auto;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Tablets pequenos / landscape mobile (max 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .logo {
+    justify-content: flex-start;
+  }
+
+  .logo h1 {
+    font-size: 1.3rem;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  nav a {
+    font-size: 0.82rem;
+    padding: 5px 10px;
+    margin: 0;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+    font-size: 0.88rem;
+  }
+
+  .search-box button {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+  }
+
+  #LOJA h2 {
+    font-size: 1.4rem;
+  }
+
+  .filtros {
+    gap: 8px;
+  }
+
+  .filtro {
+    font-size: 0.82rem;
+    padding: 7px 14px;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .product {
+    height: 350px;
+  }
+
+  .product img {
+    height: 160px;
+  }
+
+  .product h3 {
+    font-size: 0.85rem;
+  }
+
+  .product p {
+    font-size: 0.8rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 0.82rem;
+    padding: 9px;
+  }
+}
+
+/* Mobile (max 480px) */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 12px;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+
+  .logo-sub {
+    font-size: 0.8rem;
+  }
+
+  nav a {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .nav-cart {
+    padding: 5px 12px !important;
+    font-size: 0.75rem !important;
+  }
+
+  #LOJA {
+    margin: 14px auto;
+  }
+
+  #LOJA h2 {
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+
+  .filtros {
+    gap: 6px;
+  }
+
+  .filtro {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .product {
+    padding: 10px;
+    height: 320px;
+  }
+
+  .product img {
+    height: 130px;
+  }
+
+  .product h3 {
+    font-size: 0.8rem;
+  }
+
+  .product p {
+    font-size: 0.75rem;
+  }
+
+  .price {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+}
+
+/* Mobile muito pequeno (max 360px) */
+@media (max-width: 360px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .product img {
+    height: 180px;
+  }
+
+  .filtro {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .logo h1 {
+    font-size: 1rem;
+  }
+}

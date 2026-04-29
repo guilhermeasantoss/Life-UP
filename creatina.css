@@ -1,0 +1,286 @@
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Corpo da página */
+body {
+    background-color: #141414;
+    color: #ffffff;
+    line-height: 1.6;
+    padding: 0;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #000000;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e50914;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header h1 {
+    color: #e50914;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Barra de navegação */
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #e50914;
+}
+
+/* Caixa de pesquisa */
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    padding: 8px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-box button {
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-box button:hover {
+    background-color: #f40612;
+}
+
+/* Imagem do produto */
+img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+/* Título do produto */
+h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #e50914;
+}
+
+/* Texto descritivo */
+p {
+    max-width: 800px;
+    margin: 10px auto;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Labels e inputs */
+label {
+    display: block;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+/* Preço */
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e50914;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.desconto {
+    text-align: center;
+    color: #00ff00;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Botão Comprar */
+.btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #e50914;
+    color: #fff;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #f40612;
+}
+
+/* ===== RESPONSIVIDADE COMPLETA ===== */
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  nav a {
+    font-size: 14px;
+    margin: 0 6px;
+  }
+
+  .search-box {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .search-box input {
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+  }
+
+  .search-box button {
+    width: 100%;
+    border-radius: 4px;
+    padding: 9px;
+  }
+
+  img {
+    max-width: 100%;
+    margin: 14px auto;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+    padding: 0 8px;
+  }
+
+  label {
+    font-size: 15px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .desconto {
+    font-size: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  header {
+    padding: 10px 12px;
+  }
+
+  header h1 {
+    font-size: 18px;
+  }
+
+  nav a {
+    font-size: 13px;
+    margin: 0 4px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  h3 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+}

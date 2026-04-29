@@ -1,0 +1,428 @@
+/* ===== RESET ===== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* ===== ESTILO GERAL ===== */
+body {
+  background-color: #141414;
+  color: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
+  
+}
+
+/* ===== TELA DE CARREGAMENTO ===== */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #b20710;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== CABEÇALHO ===== */
+header {
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 2px solid #e50914;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 20px rgba(229,9,20,0.15);
+}
+
+header h1 {
+  color: #e50914;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* ===== BARRA DE PESQUISA ===== */
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 30px;
+  padding: 6px 12px;
+  border: 1px solid #2a2a2a;
+  transition: border-color 0.2s;
+  gap: 6px;
+}
+
+.search-box:focus-within {
+  border-color: #e50914;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  padding: 6px 4px;
+  width: 200px;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-box button {
+  background-color: #e50914;
+  border: none;
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.search-box button:hover {
+  background-color: #b20710;
+}
+
+/* ===== NAVEGAÇÃO ===== */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  margin: 0;
+}
+
+nav a:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.07);
+}
+
+.nav-cart {
+  background-color: #e50914;
+  color: #fff !important;
+  border-radius: 20px !important;
+  padding: 6px 16px !important;
+  font-weight: 600 !important;
+  transition: background 0.3s, transform 0.2s !important;
+}
+
+.nav-cart:hover {
+  background-color: #b20710 !important;
+  transform: translateY(-1px);
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  background-color: #1c1c1c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.container img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.container h3 {
+  color: #e50914;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.container p {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+/* ===== LABELS E INPUTS ===== */
+label {
+  display: block;
+  margin: 15px 0;
+  font-weight: bold;
+  color: #fff;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+select {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+/* ===== PREÇO E DESCONTO ===== */
+.price {
+  font-size: 22px;
+  margin-top: 10px;
+  color: #e50914;
+  font-weight: bold;
+}
+
+.desconto {
+  color: #00ff95;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ===== BOTÃO COMPRAR ===== */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #e50914;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-align: center;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: #b20710;
+  transform: scale(1.05);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Desktop largo (min 1200px) */
+@media (min-width: 1200px) {
+  header {
+    padding: 14px 48px;
+  }
+
+  .search-box input {
+    width: 260px;
+  }
+
+  .container {
+    max-width: 860px;
+  }
+}
+
+/* Tablets (max 1024px) */
+@media (max-width: 1024px) {
+  header {
+    padding: 12px 24px;
+    gap: 10px;
+  }
+
+  .search-box input {
+    width: 180px;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  .container {
+    max-width: 90%;
+    margin: 40px auto;
+  }
+}
+
+/* Tablets pequenos / landscape mobile (max 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .logo h1 {
+    font-size: 1.3rem;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  nav a {
+    font-size: 0.82rem;
+    padding: 5px 10px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+    font-size: 0.88rem;
+  }
+
+  .search-box button {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+  }
+
+  .container {
+    margin: 20px 16px;
+    padding: 20px 16px;
+  }
+
+  .container h3 {
+    font-size: 1.2rem;
+  }
+
+  .container p {
+    font-size: 0.9rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  select {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 13px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile (max 480px) */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 12px;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+
+  .logo-sub {
+    font-size: 0.8rem;
+  }
+
+  .logo-icon {
+    font-size: 1.1rem;
+  }
+
+  nav a {
+    font-size: 0.78rem;
+    padding: 4px 8px;
+  }
+
+  .nav-cart {
+    padding: 5px 12px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .container {
+    margin: 14px 10px;
+    padding: 16px 12px;
+    border-radius: 8px;
+  }
+
+  .container h3 {
+    font-size: 1.1rem;
+  }
+
+  .container p {
+    font-size: 0.85rem;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+
+  .desconto {
+    font-size: 0.82rem;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile muito pequeno (max 360px) */
+@media (max-width: 360px) {
+  .logo h1 {
+    font-size: 1rem;
+  }
+
+  nav a {
+    font-size: 0.72rem;
+    padding: 4px 6px;
+  }
+
+  .container {
+    margin: 10px 8px;
+    padding: 14px 10px;
+  }
+
+  .container h3 {
+    font-size: 1rem;
+  }
+}
