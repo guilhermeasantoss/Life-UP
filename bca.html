@@ -13,7 +13,7 @@
 
 <header>
   <a href="index.html" class="logo">
-    <span class="logo-icon">?</span>
+    <span class="logo-icon">⚡</span>
     <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
   </a>
   <div class="search-box">
@@ -24,10 +24,10 @@
     <button onclick="pesquisar()">Buscar</button>
   </div>
    <nav>
-      <a href="index.html">In�cio</a>
+      <a href="index.html">Início</a>
       <a href="loja.html">Produtos</a>
       <a href="entrar.html">Login</a>
-      <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
+      <a href="carrinho.html" class="nav-cart">🛒 Carrinho</a>
     </nav>
 </header>
 
@@ -37,9 +37,9 @@
 </h3>
 <BR>
 
-<P>Amino�cidos de cadeia ramificada para recupera��o do desgaste f�sico e constru��o muscular.
+<P>Aminoácidos de cadeia ramificada para recuperação do desgaste físico e construção muscular.
 
-Indispens�vel para a manuten��o e o crescimento dos m�sculos o BCAA Lifeup promove uma maior recupera��o muscular e aumento da resist�ncia no pr� e p�s-treino, fornecendo um maior efeito anti-catab�lico sendo um importante suplemento alimentar para ganhos de massa e recupera��o muscular.
+Indispensável para a manutenção e o crescimento dos músculos o BCAA Lifeup promove uma maior recuperação muscular e aumento da resistência no pré e pós-treino, fornecendo um maior efeito anti-catabólico sendo um importante suplemento alimentar para ganhos de massa e recuperação muscular.
 </P>
 
 <label>Selecione a dosagem:<br>
@@ -75,7 +75,7 @@ const msgDesconto = document.getElementById('mensagem-desconto');
 
 let precoBase = 0;
 
-// Atualiza o pre�o total
+// Atualiza o preço total
 function atualizarPreco() {
     const quantidade = parseInt(selectQtd.value);
     let total = precoBase * quantidade;
@@ -104,13 +104,13 @@ radios.forEach(radio => {
 // Quando mudar a quantidade
 selectQtd.addEventListener('change', atualizarPreco);
 
-// Inicializa com valor padr�o (250g e quantidade 1)
+// Inicializa com valor padrão (250g e quantidade 1)
 window.addEventListener('DOMContentLoaded', () => {
     const selecionado = document.querySelector('input[name="dose"]:checked');
     precoBase = parseFloat(selecionado.getAttribute('data-preco'));
     atualizarPreco();
 });
-// Fun��o para redirecionar ao carrinho com dados
+// Função para redirecionar ao carrinho com dados
 function irParaCarrinho() {
     const dose = document.querySelector('input[name="dose"]:checked').value;
     const quantidade = selectQtd.value;

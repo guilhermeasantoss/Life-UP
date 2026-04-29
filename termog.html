@@ -13,7 +13,7 @@
 
 <header>
   <a href="index.html" class="logo">
-    <span class="logo-icon">?</span>
+    <span class="logo-icon">âš¡</span>
     <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
   </a>
   <div class="search-box">
@@ -24,17 +24,17 @@
     <button onclick="pesquisar()">Buscar</button>
   </div>
   <nav>
-    <a href="index.html">Início</a>
+    <a href="index.html">InÃ­cio</a>
     <a href="loja.html">Produtos</a>
     <a href="entrar.html">Login</a>
-    <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
+    <a href="carrinho.html" class="nav-cart">ðŸ›’ Carrinho</a>
   </nav>
 </header>
 
 <img src="img/termo.png" alt="Dumbbells">
 <h3>Termogenico LifeUp</h3>
 <br>
-<p>Se você deseja conquistar uma vida mais ativa e saudável ou ter um desempenho mais eficiente nos seus exercícios físicos é fundamental ter o máximo de atenção no trabalho de repor os gastos energéticos, enriquecendo a dieta com vários tipos de nutrientes. Para isso você pode contar com a ajuda do Termogênico sem sabor Integralmédica Therma Pro Hardcore, um suplemento com cafeína que fornece mais energia para melhorar a performance. Ele também ajuda a acelerar o processo de queima de gordura e aumentar o metabolismo. Nesta embalagem você leva um pote com 60 cápsulas. Com 30 anos de tradição, a Integralmédica traduz a ciência da nutrição esportiva em uma vasta linha de suplementos adequados a diferentes objetivos. Por isso, oferece produtos com a máxima qualidade, tecnologia e inovação para praticantes de atividades físicas de todos os níveis.</p>
+<p>Se vocÃª deseja conquistar uma vida mais ativa e saudÃ¡vel ou ter um desempenho mais eficiente nos seus exercÃ­cios fÃ­sicos Ã© fundamental ter o mÃ¡ximo de atenÃ§Ã£o no trabalho de repor os gastos energÃ©ticos, enriquecendo a dieta com vÃ¡rios tipos de nutrientes. Para isso vocÃª pode contar com a ajuda do TermogÃªnico sem sabor IntegralmÃ©dica Therma Pro Hardcore, um suplemento com cafeÃ­na que fornece mais energia para melhorar a performance. Ele tambÃ©m ajuda a acelerar o processo de queima de gordura e aumentar o metabolismo. Nesta embalagem vocÃª leva um pote com 60 cÃ¡psulas. Com 30 anos de tradiÃ§Ã£o, a IntegralmÃ©dica traduz a ciÃªncia da nutriÃ§Ã£o esportiva em uma vasta linha de suplementos adequados a diferentes objetivos. Por isso, oferece produtos com a mÃ¡xima qualidade, tecnologia e inovaÃ§Ã£o para praticantes de atividades fÃ­sicas de todos os nÃ­veis.</p>
 
 <label>Selecione a dosagem:<br>
     <br>
@@ -70,7 +70,7 @@ const msgDesconto = document.getElementById('mensagem-desconto');
 
 let precoBase = 0;
 
-// Atualiza o preço total
+// Atualiza o preÃ§o total
 function atualizarPreco() {
     const quantidade = parseInt(selectQtd.value);
     let total = precoBase * quantidade;
@@ -99,13 +99,13 @@ radios.forEach(radio => {
 // Quando mudar a quantidade
 selectQtd.addEventListener('change', atualizarPreco);
 
-// Inicializa com valor padrão (250g e quantidade 1)
+// Inicializa com valor padrÃ£o (250g e quantidade 1)
 window.addEventListener('DOMContentLoaded', () => {
     const selecionado = document.querySelector('input[name="dose"]:checked');
     precoBase = parseFloat(selecionado.getAttribute('data-preco'));
     atualizarPreco();
 });
-// Função para redirecionar ao carrinho com dados
+// FunÃ§Ã£o para redirecionar ao carrinho com dados
 function irParaCarrinho() {
     const dose = document.querySelector('input[name="dose"]:checked').value;
     const quantidade = selectQtd.value;
