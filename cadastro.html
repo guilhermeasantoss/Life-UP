@@ -10,7 +10,7 @@
 <body>
   <header>
   <a href="index.html" class="logo">
-    <span class="logo-icon">?</span>
+    <span class="logo-icon">âš¡</span>
     <h1>LifeUp <span class="logo-sub">Suplementos</span></h1>
   </a>
   <div class="search-box">
@@ -21,10 +21,10 @@
     <button onclick="window.location.href='loja.html'">Buscar</button>
   </div>
   <nav>
-    <a href="index.html">Início</a>
+    <a href="index.html">InÃ­cio</a>
     <a href="loja.html">Produtos</a>
     <a href="entrar.html">Login</a>
-    <a href="carrinho.html" class="nav-cart">?? Carrinho</a>
+    <a href="carrinho.html" class="nav-cart">ðŸ›’ Carrinho</a>
   </nav>
 </header>
 
@@ -48,8 +48,8 @@
 
     <button onclick="cadastrar()">Cadastrar</button>
     <p style="text-align:center;margin-top:12px;font-size:0.82rem">
-      Já tem conta? <a href="entrar.html" style="color:#e50914;text-decoration:none">Fazer login</a>
-      &nbsp;·&nbsp;
+      JÃ¡ tem conta? <a href="entrar.html" style="color:#e50914;text-decoration:none">Fazer login</a>
+      &nbsp;|&nbsp;
       <a href="#" onclick="event.preventDefault(); document.getElementById('modal-recuperar-cad').style.display='flex'" style="color:#888;text-decoration:none">Esqueci minha senha</a>
     </p>
     <p id="msg"></p>
@@ -80,7 +80,7 @@
     <div id="cad-rec-nova-area" style="display:none">
       <div style="margin-bottom:12px">
         <label style="display:block;font-size:0.75rem;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;font-family:'Poppins',sans-serif">Nova Senha</label>
-        <input type="password" id="cad-rec-nova" placeholder="Mínimo 6 caracteres"
+        <input type="password" id="cad-rec-nova" placeholder="MÃ­nimo 6 caracteres"
           style="width:100%;background:#111;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 12px;font-size:0.9rem;font-family:'Poppins',sans-serif;outline:none;box-sizing:border-box">
       </div>
       <div style="margin-bottom:12px">
@@ -108,7 +108,7 @@
 
   <script src="script.js"></script>
   <script>
-    // Se já está logado, vai direto para a loja
+    // Se jÃ¡ estÃ¡ logado, vai direto para a loja
     if (localStorage.getItem("usuario_logado")) {
       window.location.href = "loja.html";
     }
@@ -122,7 +122,7 @@
       const senha          = document.getElementById("senha").value;
       const msg            = document.getElementById("msg");
 
-      // Validações
+      // ValidaÃ§Ãµes
       if (!nome || !email || !cpf || !data_nascimento || !senha) {
         msg.style.color = "#e50914";
         msg.innerText = "Por favor, preencha todos os campos.";
@@ -130,17 +130,17 @@
       }
       if (cpf.length !== 11 || isNaN(cpf)) {
         msg.style.color = "#e50914";
-        msg.innerText = "CPF deve conter 11 dígitos numéricos.";
+        msg.innerText = "CPF deve conter 11 dÃ­gitos numÃ©ricos.";
         return;
       }
       if (!email.includes("@")) {
         msg.style.color = "#e50914";
-        msg.innerText = "Email inválido.";
+        msg.innerText = "Email invÃ¡lido.";
         return;
       }
       if (senha.length < 6) {
         msg.style.color = "#e50914";
-        msg.innerText = "Senha deve ter no mínimo 6 caracteres.";
+        msg.innerText = "Senha deve ter no mÃ­nimo 6 caracteres.";
         return;
       }
 
@@ -187,7 +187,7 @@
 
       if (!email || cpf.length !== 11) {
         msg.style.color = '#e50914';
-        msg.textContent = 'Informe email e CPF válidos (11 dígitos).';
+        msg.textContent = 'Informe email e CPF vÃ¡lidos (11 dÃ­gitos).';
         return;
       }
 
@@ -216,8 +216,8 @@
       const confirmar = document.getElementById('cad-rec-confirmar').value;
       const msg       = document.getElementById('cad-rec-msg');
 
-      if (nova.length < 6) { msg.style.color = '#e50914'; msg.textContent = 'Senha deve ter no mínimo 6 caracteres.'; return; }
-      if (nova !== confirmar) { msg.style.color = '#e50914'; msg.textContent = 'As senhas não coincidem.'; return; }
+      if (nova.length < 6) { msg.style.color = '#e50914'; msg.textContent = 'Senha deve ter no mÃ­nimo 6 caracteres.'; return; }
+      if (nova !== confirmar) { msg.style.color = '#e50914'; msg.textContent = 'As senhas nÃ£o coincidem.'; return; }
 
       fetch("http://127.0.0.1:5000/recuperar/senha", {
         method: "PUT",
@@ -228,7 +228,7 @@
       .then(res => {
         if (res.error) { msg.style.color = '#e50914'; msg.textContent = res.error; return; }
         msg.style.color = '#00c864';
-        msg.textContent = '? Senha redefinida com sucesso! Você já pode fazer login.';
+        msg.textContent = 'Senha redefinida com sucesso! VocÃª jÃ¡ pode fazer login.';
         document.getElementById('cad-btn-rec').style.display = 'none';
         setTimeout(fecharRecuperarCad, 2500);
       })
